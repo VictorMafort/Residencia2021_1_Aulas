@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import styles from './styles';
+import ContadorFuncao from './Componentes/Contador/Contador';
+import FraseAleatoria from './Componentes/FrasesAleatoria/FrasesAleatorias';
 
 class Aplicativo extends React.Component {
   render() {
@@ -13,19 +15,12 @@ class Aplicativo extends React.Component {
 }
 
 const App = () => {
-  const handleOnPress = () => {
-    Alert.alert('Oi', 'Sou um alert');
-  };
+  const data = 'Eu sou o App mesmo';
   return (
     <View style={styles.view}>
-      <Text>oi</Text>
-      <TouchableOpacity onPress={handleOnPress}>
-        <Text>button</Text>
-      </TouchableOpacity>
-      <View>
-        <Text>olá</Text>
-      </View>
       <Aplicativo />
+      <ContadorFuncao />
+      <FraseAleatoria dataDoApp={data} />
     </View>
   );
 };
