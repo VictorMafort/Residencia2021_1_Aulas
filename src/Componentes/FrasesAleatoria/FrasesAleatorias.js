@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import estilo from './estilo';
 
@@ -14,8 +14,24 @@ class FraseAleatoria extends React.Component {
     super(props);
     this.state = {
       frase: frases[0],
+      intervalId: 0,
     };
   }
+  componentDidMount() {
+    const intervalo = setInterval(() => {
+      this.setState({frase: frases[Math.floor(Math.random() * frases.length)]});
+    }, 2000);
+    this.salvarIntervalo(intervalo);
+  }
+
+  salvarIntervalo = intervalo => {
+    this.setState({intervalId: intervalo});
+  };
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+  }
+
   mudarFrase = () => {
     this.setState({frase: frases[Math.floor(Math.random() * frases.length)]});
   };
@@ -37,6 +53,15 @@ const FrasesAleatoriasFuncao = props => {
   const mudarFrase = () => {
     setFrase(frases[Math.floor(Math.random() * frases.length)]);
   };
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setFrase(frases[Math.floor(Math.random() * frases.length)]);
+    }, 2000);
+
+    return () => clearInterval(intervalo);
+  }, []);
+
   return (
     <View style={[estilo.container, estilo.viewPrincipal]}>
       <Text style={estilo.apptext}>Dado do app = {props.dataDoApp}</Text>
@@ -48,4 +73,4 @@ const FrasesAleatoriasFuncao = props => {
   );
 };
 
-export default FraseAleatoria;
+export default FrasesAleatoriasFuncao;

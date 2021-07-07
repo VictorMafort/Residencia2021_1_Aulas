@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import styles from './styles';
 import ContadorFuncao from './Componentes/Contador/Contador';
-import FraseAleatoria from './Componentes/FrasesAleatoria/FrasesAleatorias';
+import FrasesAleatoriasFuncao from './Componentes/FrasesAleatoria/FrasesAleatorias';
 
 class Aplicativo extends React.Component {
   render() {
@@ -20,7 +20,7 @@ const App = () => {
     <View style={styles.view}>
       <Aplicativo />
       <ContadorFuncao />
-      <FraseAleatoria dataDoApp={data} />
+      <FrasesAleatoriasFuncao dataDoApp={data} />
     </View>
   );
 };
